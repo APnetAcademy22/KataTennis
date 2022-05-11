@@ -5,10 +5,11 @@ namespace TennisKata.Test
 {
     public class Tests
     {
+        Game myGame;
         [SetUp]
         public void Setup()
         {
-            
+            myGame = new Game("Federer", "Nadal");
         }
 
         [TestCase(0, 0, "Love-Love")]
@@ -25,7 +26,6 @@ namespace TennisKata.Test
         [TestCase(400, 400, "Deuce")]
         public void ValidPointsTest(int val1, int val2, string result)
         {
-            Game myGame = new Game("Federer", "Nadal");
             string actualResult = myGame.ResultToString(val1, val2);
             Assert.AreEqual(result, actualResult);
         }
@@ -34,10 +34,8 @@ namespace TennisKata.Test
         [TestCase(-1, -5)]
         [TestCase(4, -4)]
         [TestCase(null, 2)]
-        public void InvalidInput(int val1, int val2)
+        public void InvalidInput(int? val1, int? val2)
         {
-            Game myGame = new Game("Federer", "Nadal");
-            ;
             Assert.Throws(typeof(InvalidInputException), new TestDelegate (() => myGame.ResultToString(val1, val2) )  );
         }
 
@@ -47,7 +45,6 @@ namespace TennisKata.Test
         [TestCase(8, 6)]
         public void InvalidPoints(int val1, int val2)
         {
-            Game myGame = new Game("Federer", "Nadal");
             Assert.Throws(typeof(ImpossibleGameException),new TestDelegate(() => myGame.ResultToString(val1, val2) ) );
         }
 
