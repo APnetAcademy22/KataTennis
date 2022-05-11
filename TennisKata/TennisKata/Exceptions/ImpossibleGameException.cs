@@ -8,5 +8,6 @@ namespace TennisKata
 {
     public class ImpossibleGameException : Exception
     {
+        public ImpossibleGameException(string message) : base(message) { }
     }
 }
